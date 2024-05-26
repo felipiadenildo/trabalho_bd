@@ -165,3 +165,16 @@ After the setup, it presents the following menu options:
 ---
 
 This README provides an overview of the election system prototype, instructions for setting up and running the project, and a detailed explanation of its functionalities. For any further questions or issues, please refer to the project documentation or contact the project maintainer.
+
+## Project Maintainers
+
+For any questions or issues, please contact the project maintainers:
+
+|-------------------------------|---------------------------|
+| Name                          | Email                     |
+|-------------------------------|---------------------------|
+| Anlee Feng Chang              |                           |
+| Felipi Adenildo Soares Sousa  | felipiadenildo(at)usp.br  |
+| Gustav Shigueo Nicioka Asano  |                           |
+| Matheus Rodrigues dos Santos  |                           |
+|-------------------------------|---------------------------|

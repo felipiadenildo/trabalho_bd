@@ -4,7 +4,7 @@ INSERT INTO individuo (cpf, rg, nome, data_nasc, nacionalidade, telefone, tipo) 
 ('456.789.012-33', 100004, 'Ana Lima', '1985-04-04', 'Brasileiro', 4444444444, 'candidato'),
 ('789.012.345-66', 100007, 'José Almeida', '1970-07-07', 'Brasileiro', 7777777777, 'candidato'),
 ('012.345.678-99', 100010, 'Juliana Ferreira', '1998-10-10', 'Brasileiro', 1010101010, 'candidato'),
-('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Brasileiro', 0000000001, 'candidato'), --estrangeira
+('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Peruano', 0000000001, 'candidato'), --estrangeira
 ('000.000.000-02', 100012, 'Julia Oliveira', '2000-10-01', 'Brasileiro', 0000000002, 'candidato'),
 ('000.000.000-03', 100013, 'Laura Penha', '1990-12-10', 'Brasileiro', 0000000003, 'candidato'),
 ('000.000.000-04', 100014, 'Marcos Noronha', '1971-05-21', 'Brasileiro', 0000000004, 'candidato'),
@@ -90,7 +90,7 @@ INSERT INTO candidato (individuo, partido) VALUES
 ('789.012.345-66', 3),
 ('012.345.678-99', 4), 
 	
--- ('000.000.000-01', 1), --prefeitos de sp
+('000.000.000-01', 1), --prefeitos de sp
 ('000.000.000-02', 2), 
 ('000.000.000-03', 3), 
 ('000.000.000-04', 4),
@@ -113,11 +113,11 @@ INSERT INTO candidato (individuo, partido) VALUES
 ('000.000.000-21', 1),
 ('000.000.000-22', 2),
 ('000.000.000-23', 3),
-('000.000.000-24', 4);
+('000.000.000-24', 4),
 	
 --
---('000.000.000-25', 1), --para tentar candidatar um estrangerio à presidencia
---('000.000.000-26', 2); --para tentar candidatar um menor de idade
+('000.000.000-25', 1), --para tentar candidatar um estrangerio à presidencia
+('000.000.000-26', 2); --para tentar candidatar um menor de idade
 
 
 INSERT INTO cargo (codigo, nome, qtd_eleitos, cidade, estado) VALUES
@@ -180,30 +180,30 @@ INSERT INTO empresa (cnpj, nome) VALUES
 ('01.234.567/0001-99', 'Empresa J');
 
 
-INSERT INTO candidatura (codigo, candidato, cargo, pleito, vice_candidato) VALUES
+INSERT INTO candidatura (codigo, candidato, cargo, ano, pleito, vice_candidato) VALUES
 --candidaturas ao cargo de Presidência
-(1, '123.456.789-00', 1, 1, '000.000.000-17'),
-(2, '456.789.012-33', 1, 2, '000.000.000-18'),
-(3, '789.012.345-66', 1, 3, '000.000.000-19'),
-(4, '012.345.678-99', 1, 4, '000.000.000-20'),
+(1, '123.456.789-00', 1, 2024, 1, '000.000.000-17'),
+(2, '456.789.012-33', 1, 2024, 2, '000.000.000-18'),
+(3, '789.012.345-66', 1, 2024, 3, '000.000.000-19'),
+(4, '012.345.678-99', 1, 2024, 4, '000.000.000-20'),
 
 --candidaturas ao cargo de Prefeito da capital São Paulo
-(5, '000.000.000-01', 2, 5, '000.000.000-21'),
-(6, '000.000.000-02', 2, 6, '000.000.000-22'),
-(7, '000.000.000-03', 2, 7, '000.000.000-23'),
-(8, '000.000.000-04', 2, 8, '000.000.000-24'),
+(5, '000.000.000-01', 2, 2024, 5, '000.000.000-21'),
+(6, '000.000.000-02', 2, 2024, 6, '000.000.000-22'),
+(7, '000.000.000-03', 2, 2024, 7, '000.000.000-23'),
+(8, '000.000.000-04', 2, 2024, 8, '000.000.000-24'),
 
 --candidaturas ao cargo de Vereador da capital São Paulo
-(9, '000.000.000-05', 3, 9, NULL),
-(10, '000.000.000-06', 3, 10, NULL),
-(11, '000.000.000-07', 3, 11, NULL),
-(12, '000.000.000-08', 3, 12, NULL),
+(9, '000.000.000-05', 3, 2024, 9, NULL),
+(10, '000.000.000-06', 3, 2024, 10, NULL),
+(11, '000.000.000-07', 3, 2024, 11, NULL),
+(12, '000.000.000-08', 3, 2024, 12, NULL),
 
 --candidaturas ao cargo de Deputado do estado de SP
-(13, '000.000.000-09', 4, 13, NULL),
-(14, '000.000.000-11', 4, 14, NULL),
-(15, '000.000.000-12', 4, 15, NULL),
-(16, '000.000.000-13', 4, 16, NULL);
+(13, '000.000.000-09', 4, 2024, 13, NULL),
+(14, '000.000.000-11', 4, 2024, 14, NULL),
+(15, '000.000.000-12', 4, 2024, 15, NULL),
+(16, '000.000.000-13', 4, 2024, 16, NULL);
 
 
 INSERT INTO doacao (candidatura, doador, valor) VALUES
