@@ -7,12 +7,15 @@ def main():
     # Configurações do banco de dados PostgreSQL
     postgres_host = 'localhost'
     postgres_port = '5432'
-    postgres_user = 'postgres'
-    postgres_password = '1234'
-    postgres_db = 'postgres'
+    default_postgres_user = 'postgres'
+    default_postgres_password = '1234'
+    default_postgres_db = 'postgres'
+
+    postgres_user = input(f"Enter PostgreSQL username (default: {default_postgres_user}): ").strip() or default_postgres_user
+    postgres_password = input(f"Enter PostgreSQL password (default: {default_postgres_password}): ").strip() or default_postgres_password
 
     # Criar uma instância do banco de dados PostgreSQL
-    db = Database(db_name=postgres_db,
+    db = Database(db_name=default_postgres_db,
                   host= postgres_host,
                   port=postgres_port,
                   user= postgres_user,
