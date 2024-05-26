@@ -170,11 +170,10 @@ This README provides an overview of the election system prototype, instructions 
 
 For any questions or issues, please contact the project maintainers:
 
-|-------------------------------|---------------------------|
+
 | Name                          | Email                     |
 |-------------------------------|---------------------------|
-| Anlee Feng Chang              |                           |
+| Anlee Feng Chang              | anlee(at)usp.br           |
 | Felipi Adenildo Soares Sousa  | felipiadenildo(at)usp.br  |
 | Gustav Shigueo Nicioka Asano  |                           |
 | Matheus Rodrigues dos Santos  |                           |
-|-------------------------------|---------------------------|
