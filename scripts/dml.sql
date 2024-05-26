@@ -4,7 +4,7 @@ INSERT INTO individuo (cpf, rg, nome, data_nasc, nacionalidade, telefone, tipo) 
 ('456.789.012-33', 100004, 'Ana Lima', '1985-04-04', 'Brasileiro', 4444444444, 'candidato'),
 ('789.012.345-66', 100007, 'José Almeida', '1970-07-07', 'Brasileiro', 7777777777, 'candidato'),
 ('012.345.678-99', 100010, 'Juliana Ferreira', '1998-10-10', 'Brasileiro', 1010101010, 'candidato'),
-('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Peruano', 0000000001, 'candidato'), --estrangeira
+('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Brasileiro', 0000000001, 'candidato'), --estrangeira
 ('000.000.000-02', 100012, 'Julia Oliveira', '2000-10-01', 'Brasileiro', 0000000002, 'candidato'),
 ('000.000.000-03', 100013, 'Laura Penha', '1990-12-10', 'Brasileiro', 0000000003, 'candidato'),
 ('000.000.000-04', 100014, 'Marcos Noronha', '1971-05-21', 'Brasileiro', 0000000004, 'candidato'),
@@ -73,10 +73,10 @@ INSERT INTO processo_judicial (codigo, individuo, data_abertura, data_termino, p
 
 
 INSERT INTO programa_partido (codigo, programa) VALUES
-(1, 'Programa do Partido A'),
-(2, 'Programa do Partido B'),
-(3, 'Programa do Partido C'),
-(4, 'Programa do Partido D');
+(1,'O Partido A visa promover uma economia de mercado com mínima intervenção do governo. Defendemos a privatização de empresas estatais, a redução de impostos e a desregulamentação para estimular o empreendedorismo. Nossa ideologia é liberal e buscamos uma sociedade onde a iniciativa privada seja o principal motor do crescimento econômico.'),
+(2,'O Partido B acredita na igualdade social através de políticas públicas inclusivas. Defendemos a expansão dos serviços de saúde e educação gratuitos, a implementação de programas de assistência social e a defesa dos direitos trabalhistas. Nossa ideologia é social-democrata, com foco no bem-estar e na justiça social.'),
+(3,'O Partido C é comprometido com a sustentabilidade ambiental e a preservação dos recursos naturais. Propomos políticas rigorosas de proteção ambiental, incentivo às energias renováveis e a promoção de práticas sustentáveis em todos os setores. Nossa ideologia é ecologista e buscamos um desenvolvimento econômico que respeite o meio ambiente.'),
+(4,'O Partido D defende uma governança baseada na participação popular e na transparência. Promovemos a descentralização do poder, a criação de conselhos comunitários e a implementação de mecanismos de controle social. Nossa ideologia é democrática participativa, com foco na inclusão cidadã nas decisões políticas.');
 
 INSERT INTO partido (codigo, nome, sigla, programa) VALUES
 (1, 'Partido A', 'PA', 1),
@@ -90,7 +90,7 @@ INSERT INTO candidato (individuo, partido) VALUES
 ('789.012.345-66', 3),
 ('012.345.678-99', 4), 
 	
-('000.000.000-01', 1), --prefeitos de sp
+-- ('000.000.000-01', 1), --prefeitos de sp
 ('000.000.000-02', 2), 
 ('000.000.000-03', 3), 
 ('000.000.000-04', 4),
@@ -113,11 +113,11 @@ INSERT INTO candidato (individuo, partido) VALUES
 ('000.000.000-21', 1),
 ('000.000.000-22', 2),
 ('000.000.000-23', 3),
-('000.000.000-24', 4),
+('000.000.000-24', 4);
 	
 --
-('000.000.000-25', 1), --para tentar candidatar um estrangerio à presidencia
-('000.000.000-26', 2); --para tentar candidatar um menor de idade
+--('000.000.000-25', 1), --para tentar candidatar um estrangerio à presidencia
+--('000.000.000-26', 2); --para tentar candidatar um menor de idade
 
 
 INSERT INTO cargo (codigo, nome, qtd_eleitos, cidade, estado) VALUES
