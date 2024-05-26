@@ -4,7 +4,7 @@ INSERT INTO individuo (cpf, rg, nome, data_nasc, nacionalidade, telefone, tipo) 
 ('456.789.012-33', 100004, 'Ana Lima', '1985-04-04', 'Brasileiro', 4444444444, 'candidato'),
 ('789.012.345-66', 100007, 'José Almeida', '1970-07-07', 'Brasileiro', 7777777777, 'candidato'),
 ('012.345.678-99', 100010, 'Juliana Ferreira', '1998-10-10', 'Brasileiro', 1010101010, 'candidato'),
-('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Peruano', 0000000001, 'candidato'), --estrangeira
+('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Brasileiro', 0000000001, 'candidato'), --estrangeira
 ('000.000.000-02', 100012, 'Julia Oliveira', '2000-10-01', 'Brasileiro', 0000000002, 'candidato'),
 ('000.000.000-03', 100013, 'Laura Penha', '1990-12-10', 'Brasileiro', 0000000003, 'candidato'),
 ('000.000.000-04', 100014, 'Marcos Noronha', '1971-05-21', 'Brasileiro', 0000000004, 'candidato'),
