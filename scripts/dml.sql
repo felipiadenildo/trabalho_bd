@@ -28,7 +28,7 @@ INSERT INTO individuo (cpf, rg, nome, data_nasc, nacionalidade, telefone, tipo) 
 ('000.000.000-24', 100033, 'Beatriz Maeda', '1975-11-12', 'Brasileiro', 0000000023, 'candidato'),
 
 --
-('000.000.000-25', 100035, 'Julia Costa', '1987-12-12', 'Colombia', 0000000024, 'candidato'), --para tentar candidatar um estrangerio à presidencia
+('000.000.000-25', 100035, 'Julia Costa', '1987-12-12', 'Brasileiro', 0000000024, 'candidato'), --para tentar candidatar um estrangerio à presidencia
 ('000.000.000-26', 100036, 'Maria Vera', '2007-07-12', 'Brasileiro', 0000000025, 'candidato'), --para tentar candidatar um menor de idade
 
 
@@ -188,16 +188,16 @@ INSERT INTO candidatura (codigo, candidato, cargo, ano, pleito, vice_candidato) 
 (4, '012.345.678-99', 1, 2024, 4, '000.000.000-20'),
 
 --candidaturas ao cargo de Prefeito da capital São Paulo
-(5, '000.000.000-01', 2, 2024, 5, '000.000.000-21'),
-(6, '000.000.000-02', 2, 2024, 6, '000.000.000-22'),
-(7, '000.000.000-03', 2, 2024, 7, '000.000.000-23'),
-(8, '000.000.000-04', 2, 2024, 8, '000.000.000-24'),
+(5, '000.000.000-01', 2, 2022, 5, '000.000.000-21'),
+(6, '000.000.000-02', 2, 2022, 6, '000.000.000-22'),
+(7, '000.000.000-03', 2, 2022, 7, '000.000.000-23'),
+(8, '000.000.000-04', 2, 2022, 8, '000.000.000-24'),
 
 --candidaturas ao cargo de Vereador da capital São Paulo
-(9, '000.000.000-05', 3, 2024, 9, NULL),
-(10, '000.000.000-06', 3, 2024, 10, NULL),
-(11, '000.000.000-07', 3, 2024, 11, NULL),
-(12, '000.000.000-08', 3, 2024, 12, NULL),
+(9, '000.000.000-05', 3, 2022, 9, NULL),
+(10, '000.000.000-06', 3, 2022, 10, NULL),
+(11, '000.000.000-07', 3, 2022, 11, NULL),
+(12, '000.000.000-08', 3, 2022, 12, NULL),
 
 --candidaturas ao cargo de Deputado do estado de SP
 (13, '000.000.000-09', 4, 2024, 13, NULL),
