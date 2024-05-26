@@ -1,95 +1,89 @@
-from tkinter import Tk, Label, Entry, Button, Text
+import os
+
 
 class Interface:
-    def __init__(self, election_system):
-        self.election_system = election_system
+    def __init__(self, db_operations):
+        self.db_operations = db_operations
 
-    def list_candidates(self):
-        # Obter o texto inserido nos campos de entrada
-        year = self.year_entry.get()
-        candidate_name = self.candidate_name_entry.get()
-        position = self.position_entry.get()
+    def start(self):
+        print("Welcome to the Election System!")
 
-        # Chamar a função correspondente no sistema de eleição
-        candidates = self.election_system.list_candidates(year, candidate_name, position)
+        # Connect to the database
+        self.db_operations.db.connect()
 
-        # Exibir os candidatos na caixa de texto de saída
-        self.output.delete('1.0', 'end')  # Limpar o conteúdo anterior
-        self.output.insert('end', "Candidates:\n")
-        for candidate in candidates:
-            self.output.insert('end', candidate + '\n')
-
-
-    def generate_candidate_report(self):
-        report = self.election_system.generate_candidate_report()
-        output.delete(1.0, "end")
-        output.insert("end", "Candidate Report:\n")
-        for row in report:
-            output.insert("end", row + "\n")
-
-    def list_ficha_limpa(self):
-        ficha_limpa = self.election_system.list_ficha_limpa()
-        output.delete(1.0, "end")
-        output.insert("end", "Ficha Limpa:\n")
-        for person in ficha_limpa:
-            output.insert("end", person + "\n")
-
-def main():
-    # Criar a janela principal
-    root = Tk()
-    root.title("Sistema de Eleição")
-
-    # Adicionar um rótulo à janela
-    label = Label(root, text="Bem-vindo ao Sistema de Eleição!")
-    label.pack()
-
-    # Adicionar campos de entrada para escolher a opção
-    choice_label = Label(root, text="Escolha uma opção (1-3):")
-    choice_label.pack()
-    input_choice = Entry(root)
-    input_choice.pack()
-
-    input_year = Entry(root, width=10)
-    input_year.pack()
-    input_year_label = Label(root, text="Enter year (optional):")
-    input_year_label.pack()
-
-    input_name = Entry(root, width=30)
-    input_name.pack()
-    input_name_label = Label(root, text="Enter candidate name (optional):")
-    input_name_label.pack()
-
-    input_position = Entry(root, width=30)
-    input_position.pack()
-    input_position_label = Label(root, text="Enter position (optional):")
-    input_position_label.pack()
-
-    # Adicionar um campo de saída
-    output = Text(root, width=50, height=10)
-    output.pack()
-
-    # Função para lidar com a escolha do usuário
-    def handle_choice():
-        choice = input_choice.get()
-        if choice == '1':
-            interface.list_candidates()
-        elif choice == '2':
-            interface.generate_candidate_report()
-        elif choice == '3':
-            interface.list_ficha_limpa()
+        # Check the status of the database
+        tables = self.db_operations.list_tables()
+        if not tables:
+            print("No tables found in the database.")
+            run_initial_scripts = input("Would you like to run the DDL and initial scripts to set up the database? (yes/no): ")
+            if run_initial_scripts.lower() == 'yes':
+                self.db_operations.execute_script('ddl.sql')
+                self.db_operations.execute_script('triggers.sql')
+                self.db_operations.execute_script('dml.sql')
+                print("Database setup complete.")
         else:
-            output.delete(1.0, "end")
-            output.insert("end", "Invalid choice. Please enter a valid option.")
+            print(f"Found tables: {', '.join(tables)}")
 
-    # Adicionar um botão para confirmar a escolha
-    choice_button = Button(root, text="Confirmar", command=handle_choice)
-    choice_button.pack()
+        while True:
+            print("\nOptions:")
+            print("1. Run a specific SQL script")
+            print("2. Insert data into a table")
+            print("3. Select data from a table")
+            print("4. Update data in a table")
+            print("5. Delete data from a table")
+            print("6. View database connection status")
+            print("7. List tables in the database")
+            print("8. List available SQL scripts")
+            print("9. Exit")
+            choice = input("Enter your choice: ")
 
-    # Criar uma instância da interface
-    interface = Interface(None)
+            if choice == '1':
+                script_name = input("Enter the name of the SQL script: ")
+                self.db_operations.execute_script(script_name)
+            elif choice == '2':
+                table = input("Enter the table name: ")
+                columns = input("Enter the column names (comma-separated): ").split(',')
+                values = input("Enter the values (comma-separated): ").split(',')
+                data = dict(zip(columns, values))
+                self.db_operations.insert_data(table, data)
+            elif choice == '3':
+                table = input("Enter the table name: ")
+                columns = input("Enter the column names (comma-separated) or '*' for all columns: ")
+                data = self.db_operations.select_data(table, columns)
+                for row in data:
+                    print(row)
+            elif choice == '4':
+                table = input("Enter the table name: ")
+                columns = input("Enter the column names to update (comma-separated): ").split(',')
+                values = input("Enter the new values (comma-separated): ").split(',')
+                condition = input("Enter the condition for update: ")
+                data = dict(zip(columns, values))
+                self.db_operations.update_data(table, data, condition)
+            elif choice == '5':
+                table = input("Enter the table name: ")
+                condition = input("Enter the condition for delete: ")
+                self.db_operations.delete_data(table, condition)
+            elif choice == '6':
+                print("Database connection status:")
+                if self.db_operations.check_connection():
+                    print("Connected to the database.")
+                else:
+                    print("Not connected to the database.")
+            elif choice == '7':
+                print("Tables in the database:")
+                tables = self.db_operations.list_tables()
+                for table in tables:
+                    print(table)
+            elif choice == '8':
+                print("Available SQL scripts:")
+                scripts = self.db_operations.list_scripts()
+                for script in scripts:
+                    print(script)
+            elif choice == '9':
+                print("Exiting program. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please enter a valid option.")
 
-    # Iniciar o loop principal da interface
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
+        # Close the database connection
+        self.db_operations.db.close()

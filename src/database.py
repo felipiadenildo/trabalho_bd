@@ -1,89 +1,89 @@
-from tkinter import Tk, Label, Button, Entry, Text
+import psycopg2
+from psycopg2 import OperationalError
 
-from elections_system import ElectionSystem
+class Database:
+    def __init__(self, db_name, host, port, user, password):
+        self.db_name = db_name
+        self.host = host
+        self.port = port
+        self.user = user
+        self.password = password
+        self.connection = None
+        self.cursor = None
 
+    def connect(self):
+        try:
+            self.connection = psycopg2.connect(
+                host=self.host,
+                port=self.port,
+                user=self.user,
+                password=self.password,
+                database=self.db_name
+            )
+            self.cursor = self.connection.cursor()
+            print("PostgreSQL database connection successful.")
+        except OperationalError as e:
+            print(f"Failed to connect to PostgreSQL: {e}")
 
-class Interface:
-    def __init__(self, election_system):
-        self.election_system = election_system
+    def close(self):
+        if self.connection:
+            self.connection.close()
+            print("PostgreSQL database connection closed.")
 
-    def start(self):
-        # Criar a janela principal
-        self.root = Tk()
-        self.root.title("Sistema de Eleição")
+    def execute_script(self, script_name):
+        try:
+            with open(script_name, 'r') as script_file:
+                script = script_file.read()
+                self.cursor.execute(script)
+                self.connection.commit()
+                print("Script executed successfully.")
+        except Exception as e:
+            print(f"An error occurred while executing the script: {e}")
 
-        # Adicionar um rótulo à janela
-        self.label = Label(self.root, text="Bem-vindo ao Sistema de Eleição!")
-        self.label.pack()
+    def list_tables(self):
+        try:
+            query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
+            self.cursor.execute(query)
+            tables = self.cursor.fetchall()
+            table_names = [table[0] for table in tables]
+            return table_names
+        except Exception as e:
+            print(f"An error occurred while listing tables: {e}")
+            return []
 
-        # Adicionar botões para as opções
-        self.list_candidates_button = Button(self.root, text="Listar Candidatos", command=self.list_candidates)
-        self.list_candidates_button.pack()
-
-        self.generate_report_button = Button(self.root, text="Gerar Relatório de Candidatos", command=self.generate_candidate_report)
-        self.generate_report_button.pack()
-
-        self.list_ficha_limpa_button = Button(self.root, text="Listar Ficha Limpa", command=self.list_ficha_limpa)
-        self.list_ficha_limpa_button.pack()
-
-        self.exit_button = Button(self.root, text="Sair", command=self.exit_program)
-        self.exit_button.pack()
-
-        # Adicionar campos de entrada para entrada de dados
-        self.year_entry = Entry(self.root)
-        self.year_entry.pack()
-        self.year_entry.insert(0, "Ano (opcional)")
-
-        self.candidate_name_entry = Entry(self.root)
-        self.candidate_name_entry.pack()
-        self.candidate_name_entry.insert(0, "Nome do Candidato (opcional)")
-
-        self.position_entry = Entry(self.root)
-        self.position_entry.pack()
-        self.position_entry.insert(0, "Posição (opcional)")
-
-        # Adicionar área de texto para exibir os resultados
-        self.result_text = Text(self.root, height=10, width=50)
-        self.result_text.pack()
-
-        # Iniciar o loop principal da interface
-        self.root.mainloop()
-
-    def list_candidates(self):
-        year = self.year_entry.get()
-        candidate_name = self.candidate_name_entry.get()
-        position = self.position_entry.get()
-        candidates = self.election_system.list_candidates(year, candidate_name, position)
-        self.display_results("Candidatos:", candidates)
-
-    def generate_candidate_report(self):
-        report = self.election_system.generate_candidate_report()
-        self.display_results("Relatório de Candidatos:", report)
-
-    def list_ficha_limpa(self):
-        ficha_limpa = self.election_system.list_ficha_limpa()
-        self.display_results("Ficha Limpa:", ficha_limpa)
-
-    def display_results(self, title, results):
-        self.result_text.delete("1.0", "end")
-        self.result_text.insert("1.0", f"{title}\n")
-        for result in results:
-            self.result_text.insert("end", f"{result}\n")
-
-    def exit_program(self):
-        print("Saindo do programa. Adeus!")
-        self.root.quit()
-
-def main():
-    # Supondo que o parâmetro necessário seja um banco de dados chamado 'db'
-    db = "database.db"
+    def check_connection(self):
+        return self.connection is not None
     
-    # Criar uma instância do sistema de eleição com o parâmetro
-    election_system = ElectionSystem(db)
+    def database_exists(self, database_name):
+        try:
+            query = f"SELECT 1 FROM pg_database WHERE datname='{database_name}'"
+            self.cursor.execute(query)
+            result = self.cursor.fetchone()
+            return bool(result)
+        except Exception as e:
+            print(f"An error occurred while checking if database exists: {e}")
+            return False
 
-    # Iniciar a interface gráfica
-    interface = Interface(election_system)
-    interface.start()
+    def create_database(self, database_name):
+        try:
+            # Conectar ao banco de dados padrão 'postgres' para criar o novo banco de dados
+            conn = psycopg2.connect(
+                host=self.host,
+                port=self.port,
+                user=self.user,
+                password=self.password,
+                database='postgres'
+            )
+            conn.autocommit = True  # Desativar o modo de transação
 
-if __name__ == "__main__":
-    main()
+            # Criar o banco de dados
+            with conn.cursor() as cursor:
+                query = f"CREATE DATABASE {database_name}"
+                cursor.execute(query)
+
+            print(f"Database '{database_name}' created successfully.")
+        except Exception as e:
+            print(f"An error occurred while creating database '{database_name}': {e}")
+        finally:
+            if conn:
+                conn.close()

@@ -1,191 +1,254 @@
-INSERT INTO individuo (cpf, rg, nome, data_nasc, nacionalidade, telefone) VALUES
-('123.456.789-01', 123456789, 'Carlos Silva', '1980-05-15', 'Brasileiro', 11987654321),
-('234.567.890-12', 234567890, 'Ana Oliveira', '1990-08-22', 'Brasileiro', 11987654322),
-('345.678.901-23', 345678901, 'João Souza', '1985-02-10', 'Brasileiro', 11987654323),
-('456.789.012-34', 456789012, 'Maria Fernandes', '1975-12-30', 'Brasileiro', 11987654324),
-('567.890.123-45', 567890123, 'Pedro Almeida', '1982-07-19', 'Brasileiro', 11987654325),
-('678.901.234-56', 678901234, 'Luciana Costa', '1995-04-28', 'Brasileiro', 11987654326),
-('789.012.345-67', 789012345, 'Marcos Pereira', '1988-03-14', 'Brasileiro', 11987654327),
-('890.123.456-78', 890123456, 'Juliana Lima', '1992-11-11', 'Brasileiro', 11987654328),
-('901.234.567-89', 901234567, 'Ricardo Ribeiro', '1978-06-25', 'Brasileiro', 11987654329),
-('012.345.678-90', 123456780, 'Fernanda Nogueira', '1983-09-30', 'Brasileiro', 11987654330);
+--inserções
+INSERT INTO individuo (cpf, rg, nome, data_nasc, nacionalidade, telefone, tipo) VALUES
+('123.456.789-00', 100001, 'João Silva', '1980-01-01', 'Brasileiro', 1111111111, 'candidato'),
+('456.789.012-33', 100004, 'Ana Lima', '1985-04-04', 'Brasileiro', 4444444444, 'candidato'),
+('789.012.345-66', 100007, 'José Almeida', '1970-07-07', 'Brasileiro', 7777777777, 'candidato'),
+('012.345.678-99', 100010, 'Juliana Ferreira', '1998-10-10', 'Brasileiro', 1010101010, 'candidato'),
+('000.000.000-01', 100011, 'Ana Campos', '1983-09-09', 'Peruano', 0000000001, 'candidato'), --estrangeira
+('000.000.000-02', 100012, 'Julia Oliveira', '2000-10-01', 'Brasileiro', 0000000002, 'candidato'),
+('000.000.000-03', 100013, 'Laura Penha', '1990-12-10', 'Brasileiro', 0000000003, 'candidato'),
+('000.000.000-04', 100014, 'Marcos Noronha', '1971-05-21', 'Brasileiro', 0000000004, 'candidato'),
+('000.000.000-05', 100015, 'Luiza Costa', '1965-01-09', 'Brasileiro', 0000000005, 'candidato'),
+('000.000.000-06', 100016, 'Sofia Leite', '1983-10-09', 'Brasileiro', 0000000006, 'candidato'),
+('000.000.000-07', 100017, 'Juliano Soares', '1993-12-25', 'Brasileiro', 0000000007, 'candidato'),
+('000.000.000-08', 100018, 'Mariana Ferreira', '1967-03-12', 'Brasileiro', 0000000008, 'candidato'),
+('000.000.000-09', 100019, 'Pedro Silva', '1980-04-19', 'Brasileiro', 0000000009, 'candidato'),
+('000.000.000-11', 100020, 'Sofia Leite', '1983-07-07', 'Brasileiro', 0000000010, 'candidato'),
+('000.000.000-12', 100021, 'Juliano Soares', '1961-08-08', 'Brasileiro', 0000000011, 'candidato'),
+('000.000.000-13', 100022, 'Mariana Ferreira', '1975-11-12', 'Brasileiro', 0000000012, 'candidato'),
+
+--vice-candidatos
+('000.000.000-17', 100026, 'Luiz Carvalho', '1980-04-19', 'Brasileiro', 0000000016, 'candidato'),
+('000.000.000-18', 100027, 'Mateus Dias', '1983-07-07', 'Brasileiro', 0000000017, 'candidato'),
+('000.000.000-19', 100028, 'Luana Casagrande', '1961-08-08', 'Brasileiro', 0000000018, 'candidato'),
+('000.000.000-20', 100029, 'Paula Martins', '1975-11-12', 'Brasileiro', 0000000019, 'candidato'),
+('000.000.000-21', 100030, 'Marcos Aragão', '1980-04-19', 'Brasileiro', 0000000020, 'candidato'),
+('000.000.000-22', 100031, 'Lucas Cesar', '1983-07-07', 'Brasileiro', 0000000021, 'candidato'),
+('000.000.000-23', 100032, 'Julia Sayuri', '1961-08-08', 'Brasileiro', 0000000022, 'candidato'),
+('000.000.000-24', 100033, 'Beatriz Maeda', '1975-11-12', 'Brasileiro', 0000000023, 'candidato'),
+
+--
+('000.000.000-25', 100035, 'Julia Costa', '1987-12-12', 'Colombia', 0000000024, 'candidato'), --para tentar candidatar um estrangerio à presidencia
+('000.000.000-26', 100036, 'Maria Vera', '2007-07-12', 'Brasileiro', 0000000025, 'candidato'), --para tentar candidatar um menor de idade
+
+
+('234.567.890-11', 100002, 'Maria Oliveira', '1975-02-02', 'Brasileiro', 2222222222, 'doador'),
+('567.890.123-44', 100005, 'Pedro Santos', '1995-05-05', 'Brasileiro', 5555555555, 'doador'),
+('890.123.456-77', 100008, 'Lucia Pereira', '1992-08-08', 'Brasileiro', 8888888888, 'doador'),
+('000.000.000-10', 100034, 'Lucia Pereira', '2005-08-11', 'Brasileiro', 0000000010, 'doador'),
+
+('345.678.901-22', 100003, 'Carlos Souza', '1990-03-03', 'Brasileiro', 3333333333, 'apoiador'),
+('678.901.234-55', 100006, 'Paula Costa', '1988-06-06', 'Brasileiro', 6666666666, 'apoiador'),
+('901.234.567-88', 100009, 'Roberto Fernandes', '1983-09-09', 'Brasileiro', 9999999999, 'apoiador'),
+('000.000.000-14', 100023, 'Carlos Santos', '1987-12-03', 'Brasileiro', 0000000013, 'apoiador'),
+('000.000.000-15', 100024, 'Fernanda Matos', '1978-10-12', 'Canadense', 0000000014, 'apoiador'),
+('000.000.000-16', 100025, 'José Ferreita', '1959-10-30', 'Brasileiro', 0000000015, 'apoiador'),
+
+--individuos culpados ou com processo judicial em tramitacao
+('000.000.000-27', 100040, 'Paula Costa', '1988-06-06', 'Brasileiro', 0000000030, 'apoiador'),
+('000.000.000-28', 100041, 'Roberto Fernandes', '1983-09-09', 'Brasileiro', 0000000031, 'apoiador'),
+('000.000.000-29', 100042, 'Carlos Santos', '1987-12-03', 'Brasileiro', 0000000032, 'apoiador'),
+('000.000.000-30', 100038, 'Fernanda Matos', '1978-10-12', 'Canadense', 0000000033, 'apoiador'),
+('000.000.000-31', 100039, 'José Ferreita', '1959-10-30', 'Brasileiro', 0000000034, 'apoiador');
+
 
 INSERT INTO processo_judicial (codigo, individuo, data_abertura, data_termino, procedencia) VALUES
-(1, '123.456.789-01', '2022-01-10', '2022-03-15', 'inocente'),
-(2, '234.567.890-12', '2021-05-05', '2021-12-01', 'culpado'),
-(3, '345.678.901-23', '2020-08-15', '2020-10-20', 'inocente'),
-(4, '456.789.012-34', '2019-03-22', '2019-09-30', 'culpado'),
-(5, '567.890.123-45', '2018-07-10', '2018-11-05', 'inocente'),
-(6, '678.901.234-56', '2017-12-01', '2018-03-15', 'culpado'),
-(7, '789.012.345-67', '2021-09-17', '2022-02-28', 'inocente'),
-(8, '890.123.456-78', '2016-04-20', '2016-08-25', 'culpado'),
-(9, '901.234.567-89', '2015-11-11', '2016-01-20', 'inocente'),
-(10, '012.345.678-90', '2014-05-30', '2014-10-15', 'culpado');
+--inocentes
+(1, '234.567.890-11', '2019-02-02', '2021-03-03', 'inocente'),
+(2, '678.901.234-55', '2017-08-08', '2019-09-09', 'inocente'),
+(3, '012.345.678-99', '2013-02-02', '2013-03-03', 'inocente'),
 
-INSERT INTO participante_equipe_apoio (individuo) VALUES
-('123.456.789-01'),
-('345.678.901-23'),
-('456.789.012-34'),
-('567.890.123-45'),
-('678.901.234-56'),
-('789.012.345-67'),
-('890.123.456-78'),
-('901.234.567-89'),
-('012.345.678-90'),
-('234.567.890-12');
+--culpados
+(4, '000.000.000-27', '2018-05-05', '2020-06-06', 'culpado'),
+(5, '000.000.000-28', '2018-11-11', '2020-12-12', 'culpado'),
 
-INSERT INTO doador (individuo) VALUES
-('234.567.890-12'),
-('345.678.901-23'),
-('456.789.012-34'),
-('567.890.123-45'),
-('678.901.234-56'),
-('789.012.345-67'),
-('890.123.456-78'),
-('901.234.567-89'),
-('012.345.678-90'),
-('123.456.789-01');
+--em tramintação
+(6, '000.000.000-29', '2019-10-10', NULL, NULL),
+(7, '000.000.000-30', '2021-01-01', NULL, NULL),
+(8, '000.000.000-31', '2020-07-07', NULL, NULL),
+
+--culpado, mas há mais de 5 anos
+(9, '000.000.000-21', '2013-02-02', '2013-03-03', 'culpado');
+
+
 
 INSERT INTO programa_partido (codigo, programa) VALUES
-(1, 'Programa de melhorias sociais'),
-(2, 'Programa de desenvolvimento econômico'),
-(3, 'Programa de educação'),
-(4, 'Programa de saúde'),
-(5, 'Programa de infraestrutura'),
-(6, 'Programa de segurança pública'),
-(7, 'Programa de tecnologia'),
-(8, 'Programa de cultura'),
-(9, 'Programa de esportes'),
-(10, 'Programa de meio ambiente');
+(1, 'Programa do Partido A'),
+(2, 'Programa do Partido B'),
+(3, 'Programa do Partido C'),
+(4, 'Programa do Partido D');
 
 INSERT INTO partido (codigo, nome, sigla, programa) VALUES
-(1, 'Partido Social', 'PS', 1),
-(2, 'Partido Econômico', 'PE', 2),
-(3, 'Partido da Educação', 'PDE', 3),
-(4, 'Partido da Saúde', 'PDS', 4),
-(5, 'Partido da Infraestrutura', 'PI', 5),
-(6, 'Partido da Segurança', 'PSP', 6),
-(7, 'Partido da Tecnologia', 'PT', 7),
-(8, 'Partido da Cultura', 'PC', 8),
-(9, 'Partido dos Esportes', 'PDE', 9),
-(10, 'Partido do Meio Ambiente', 'PMA', 10);
+(1, 'Partido A', 'PA', 1),
+(2, 'Partido B', 'PB', 2),
+(3, 'Partido C', 'PC', 3),
+(4, 'Partido D', 'PD', 4);
 
 INSERT INTO candidato (individuo, partido) VALUES
-('123.456.789-01', 1),
-('234.567.890-12', 2),
-('345.678.901-23', 3),
-('456.789.012-34', 4),
-('567.890.123-45', 5),
-('678.901.234-56', 6),
-('789.012.345-67', 7),
-('890.123.456-78', 8),
-('901.234.567-89', 9),
-('012.345.678-90', 10);
+('123.456.789-00', 1), --presidentes
+('456.789.012-33', 2),
+('789.012.345-66', 3),
+('012.345.678-99', 4), 
+	
+('000.000.000-01', 1), --prefeitos de sp
+('000.000.000-02', 2), 
+('000.000.000-03', 3), 
+('000.000.000-04', 4),
+	
+('000.000.000-05', 1), --governadores
+('000.000.000-06', 2),
+('000.000.000-07', 3),
+('000.000.000-08', 4),
+	
+('000.000.000-09', 1), --deputados
+('000.000.000-11', 2),
+('000.000.000-12', 3),
+('000.000.000-13', 4),
 
-INSERT INTO empresa (cnpj, nome) VALUES
-('12.345.678/0001-90', 'Empresa Alpha'),
-('23.456.789/0001-01', 'Empresa Beta'),
-('34.567.890/0001-12', 'Empresa Gamma'),
-('45.678.901/0001-23', 'Empresa Delta'),
-('56.789.012/0001-34', 'Empresa Epsilon'),
-('67.890.123/0001-45', 'Empresa Zeta'),
-('78.901.234/0001-56', 'Empresa Eta'),
-('89.012.345/0001-67', 'Empresa Theta'),
-('90.123.456/0001-78', 'Empresa Iota'),
-('01.234.567/0001-89', 'Empresa Kappa');
+--vices
+('000.000.000-17', 1),
+('000.000.000-18', 2),
+('000.000.000-19', 3),
+('000.000.000-20', 4),
+('000.000.000-21', 1),
+('000.000.000-22', 2),
+('000.000.000-23', 3),
+('000.000.000-24', 4),
+	
+--
+('000.000.000-25', 1), --para tentar candidatar um estrangerio à presidencia
+('000.000.000-26', 2); --para tentar candidatar um menor de idade
+
 
 INSERT INTO cargo (codigo, nome, qtd_eleitos, cidade, estado) VALUES
-(1, 'Presidente', 1, 'Brasília', 'DF'),
-(2, 'Governador', 1, 'São Paulo', 'SP'),
-(3, 'Senador', 3, 'Brasília', 'DF'),
-(4, 'Deputado Federal', 70, 'Brasília', 'DF'),
-(5, 'Deputado Estadual', 94, 'São Paulo', 'SP'),
-(6, 'Prefeito', 1, 'São Paulo', 'SP'),
-(7, 'Vereador', 55, 'São Paulo', 'SP'),
-(8, 'Ministro', 30, 'Brasília', 'DF'),
-(9, 'Secretário', 50, 'São Paulo', 'SP'),
-(10, 'Governador', 1, 'Rio de Janeiro', 'RJ');
+(2, 'Prefeito', 1, 'São Paulo', 'SP'),
+(3, 'Vereador', 10, 'São Paulo', 'SP'),
+(7, 'Prefeito', 1, 'Rio de Janeiro', 'RJ'),
+(8, 'Vereador', 20, 'Rio de Janeiro', 51),
+(5, 'Governador', 1, NULL, 'RJ'),
+(6, 'Governador', 1, NULL, 'SP'),
+(1, 'Presidente', 1, NULL, 'DF'),
+(4, 'Deputado Estadual', 10, NULL, 'SP'),
+(9, 'Senador', 20, NULL, 'DF'),
+(10, 'Deputado Federal', 70, NULL, 'SP');
+
+
 
 INSERT INTO pleito (codigo, resultado_votos) VALUES
-(1, 1000000),
-(2, 2000000),
-(3, 1500000),
-(4, 1800000),
-(5, 2200000),
-(6, 1100000),
-(7, 900000),
-(8, 1300000),
-(9, 1700000),
-(10, 2100000);
+--candidatura 1
+(1, 10000000),
+(2, 50000000), --
+(3, 30000000),
+(4, 40000000),
 
-INSERT INTO candidatura (codigo, candidato, cargo, ano, pleito, vice_candidato) VALUES
-(1, '123.456.789-01', 1, 2022, 1, '234.567.890-12'),
-(2, '234.567.890-12', 2, 2022, 2, '345.678.901-23'),
-(3, '345.678.901-23', 3, 2022, 3, '456.789.012-34'),
-(4, '456.789.012-34', 4, 2022, 4, '567.890.123-45'),
-(5, '567.890.123-45', 5, 2022, 5, '678.901.234-56'),
-(6, '678.901.234-56', 6, 2022, 6, '789.012.345-67'),
-(7, '789.012.345-67', 7, 2022, 7, '890.123.456-78'),
-(8, '890.123.456-78', 8, 2022, 8, '901.234.567-89'),
-(9, '901.234.567-89', 9, 2022, 9, '012.345.678-90'),
-(10, '012.345.678-90', 10, 2022, 10, '123.456.789-01');
+--candidatura 2
+(5, 4000000),
+(6, 6000000),
+(7, 8000000), --
+(8, 2000000),
 
-INSERT INTO doacao (doador, candidatura) VALUES
-('234.567.890-12', 1),
-('345.678.901-23', 2),
-('456.789.012-34', 3),
-('567.890.123-45', 4),
-('678.901.234-56', 5),
-('789.012.345-67', 6),
-('890.123.456-78', 7),
-('901.234.567-89', 8),
-('012.345.678-90', 9),
-('123.456.789-01', 10);
+--candidatura 3
+(9, 5000000),
+(10, 10000000), --
+(11, 5000000),
+(12, 6000000),
 
-INSERT INTO empresa_doa (empresa, candidatura) VALUES
-('12.345.678/0001-90', 1),
-('23.456.789/0001-01', 2),
-('34.567.890/0001-12', 3),
-('45.678.901/0001-23', 4),
-('56.789.012/0001-34', 5),
-('67.890.123/0001-45', 6),
-('78.901.234/0001-56', 7),
-('89.012.345/0001-67', 8),
-('90.123.456/0001-78', 9),
-('01.234.567/0001-89', 10);
+--candidatura 4
+(13, 900000),
+(14, 1000000),
+(15, 8000000),
+(16, 9000000);--
 
-INSERT INTO telefone_empresa (empresa, telefone) VALUES
-('12.345.678/0001-90', 1134567890),
-('23.456.789/0001-01', 1145678901),
-('34.567.890/0001-12', 1156789012),
-('45.678.901/0001-23', 1167890123),
-('56.789.012/0001-34', 1178901234),
-('67.890.123/0001-45', 1189012345),
-('78.901.234/0001-56', 1190123456),
-('89.012.345/0001-67', 1101234567),
-('90.123.456/0001-78', 1112345678),
-('01.234.567/0001-89', 1123456789);
+INSERT INTO doador(individuo) VALUES
+('234.567.890-11'),
+('567.890.123-44'),
+('890.123.456-77'),
+('000.000.000-10');
+
+
+
+INSERT INTO empresa (cnpj, nome) VALUES
+('12.345.678/0001-00', 'Empresa A'),
+('23.456.789/0001-11', 'Empresa B'),
+('34.567.890/0001-22', 'Empresa C'),
+('45.678.901/0001-33', 'Empresa D'),
+('56.789.012/0001-44', 'Empresa E'),
+('67.890.123/0001-55', 'Empresa F'),
+('78.901.234/0001-66', 'Empresa G'),
+('89.012.345/0001-77', 'Empresa H'),
+('90.123.456/0001-88', 'Empresa I'),
+('01.234.567/0001-99', 'Empresa J');
+
+
+INSERT INTO candidatura (codigo, candidato, cargo, pleito, vice_candidato) VALUES
+--candidaturas ao cargo de Presidência
+(1, '123.456.789-00', 1, 1, '000.000.000-17'),
+(2, '456.789.012-33', 1, 2, '000.000.000-18'),
+(3, '789.012.345-66', 1, 3, '000.000.000-19'),
+(4, '012.345.678-99', 1, 4, '000.000.000-20'),
+
+--candidaturas ao cargo de Prefeito da capital São Paulo
+(5, '000.000.000-01', 2, 5, '000.000.000-21'),
+(6, '000.000.000-02', 2, 6, '000.000.000-22'),
+(7, '000.000.000-03', 2, 7, '000.000.000-23'),
+(8, '000.000.000-04', 2, 8, '000.000.000-24'),
+
+--candidaturas ao cargo de Vereador da capital São Paulo
+(9, '000.000.000-05', 3, 9, NULL),
+(10, '000.000.000-06', 3, 10, NULL),
+(11, '000.000.000-07', 3, 11, NULL),
+(12, '000.000.000-08', 3, 12, NULL),
+
+--candidaturas ao cargo de Deputado do estado de SP
+(13, '000.000.000-09', 4, 13, NULL),
+(14, '000.000.000-11', 4, 14, NULL),
+(15, '000.000.000-12', 4, 15, NULL),
+(16, '000.000.000-13', 4, 16, NULL);
+
+
+INSERT INTO doacao (candidatura, doador, valor) VALUES
+(1, '234.567.890-11', 1000.00),
+(2, '567.890.123-44', 1500.00),
+(3, '890.123.456-77', 2000.00),
+(4, '000.000.000-10', 2500.00);
+
+
+INSERT INTO empresa_doa (empresa, candidatura, valor) VALUES
+('12.345.678/0001-00', 1, 10000.00),
+('23.456.789/0001-11', 2, 15000.00),
+('34.567.890/0001-22', 3, 20000.00),
+('45.678.901/0001-33', 4, 25000.00),
+('56.789.012/0001-44', 5, 30000.00),
+('67.890.123/0001-55', 6, 35000.00),
+('78.901.234/0001-66', 7, 40000.00),
+('89.012.345/0001-77', 8, 45000.00),
+('90.123.456/0001-88', 9, 50000.00),
+('01.234.567/0001-99', 10, 55000.00);
 
 INSERT INTO equipe_de_apoio (nome, candidatura) VALUES
-('Equipe A', 1),
-('Equipe B', 2),
-('Equipe C', 3),
-('Equipe D', 4),
-('Equipe E', 5),
-('Equipe F', 6),
-('Equipe G', 7),
-('Equipe H', 8),
-('Equipe I', 9),
-('Equipe J', 10);
+('Equipe 1', 1),
+('Equipe 2', 2),
+('Equipe 3', 3),
+('Equipe 4', 4),
+('Equipe 5', 5),
+('Equipe 6', 6),
+('Equipe 7', 7),
+('Equipe 8', 8),
+('Equipe 9', 9),
+('Equipe 10', 10);
+
+INSERT INTO participante_equipe_apoio (individuo) VALUES
+('345.678.901-22'),
+('678.901.234-55'),
+('901.234.567-88'),
+('000.000.000-14'),
+('000.000.000-15'),
+('000.000.000-16');
 
 INSERT INTO participa_da_equipe_de_apoio (candidatura, participante, equipe) VALUES
-(1, '123.456.789-01', 'Equipe A'),
-(2, '234.567.890-12', 'Equipe B'),
-(3, '345.678.901-23', 'Equipe C'),
-(4, '456.789.012-34', 'Equipe D'),
-(5, '567.890.123-45', 'Equipe E'),
-(6, '678.901.234-56', 'Equipe F'),
-(7, '789.012.345-67', 'Equipe G'),
-(8, '890.123.456-78', 'Equipe H'),
-(9, '901.234.567-89', 'Equipe I'),
-(10, '012.345.678-90', 'Equipe J');
+(1, '345.678.901-22', 'Equipe 1'),
+(2, '678.901.234-55', 'Equipe 2'),
+(3, '901.234.567-88', 'Equipe 3'),
+(4, '000.000.000-14', 'Equipe 4'),
+(5, '000.000.000-15', 'Equipe 5'),
+(6, '000.000.000-16', 'Equipe 6');

@@ -1,0 +1,16 @@
+DROP TABLE participa_da_equipe_de_apoio;
+DROP TABLE equipe_de_apoio;
+DROP TABLE telefone_empresa;
+DROP TABLE empresa_doa;
+DROP TABLE doacao;
+DROP TABLE candidatura;
+DROP TABLE pleito;
+DROP TABLE cargo;
+DROP TABLE empresa;
+DROP TABLE candidato;
+DROP TABLE partido;
+DROP TABLE programa_partido;
+DROP TABLE doador;
+DROP TABLE participante_equipe_apoio;
+DROP TABLE processo_judicial;
+DROP TABLE individuo;
