@@ -1,5 +1,12 @@
 # Election System Prototype
 
+Project made by:
+
+- Anlee Feng Chang 12563690
+- Felipi Adenildo Soares Sousa 10438790
+- Gustav Shigueo Nicioka Asano 11212355
+- Matheus Rodrigues dos Santos 11212866
+
 This project is a prototype of an election system that interacts with a PostgreSQL database. It provides various functionalities for managing and querying the database through a command-line interface.
 
 ## Project Structure
