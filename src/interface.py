@@ -84,9 +84,21 @@ class Interface:
         Insert data into a table.
         """
         table = input("Enter the table name: ")
-        columns = input("Enter the column names (comma-separated): ").split(',')
-        values = input("Enter the values (comma-separated): ").split(',')
-        data = dict(zip(columns, values))
+        columns_data = self.db_operations.get_table_columns(table)
+        if not columns_data:
+            print(f"Table '{table}' does not exist or has no columns.")
+            return
+        print(f"Columns in table '{table}': {columns_data}")
+        columns = input("Enter the column names (comma-separated) or 'Enter' for all columns: ")
+        if columns:
+            columns = [col.strip() for col in columns.split(',')]
+        else:
+            columns = columns_data
+        data = {}
+        for column in columns:
+            value = input(f"Enter value for column '{column}': ")
+            data[column] = value
+
         self.db_operations.insert_data(table, data)
 
     def select_data_from_table(self):
@@ -94,7 +106,16 @@ class Interface:
         Select data from a table.
         """
         table = input("Enter the table name: ")
-        columns = input("Enter the column names (comma-separated) or '*' for all columns: ")
+        columns_data = self.db_operations.get_table_columns(table)
+        if not columns_data:
+            print(f"Table '{table}' does not exist or has no columns.")
+            return
+        print(f"Columns in table '{table}': {columns_data}")
+        columns = input("Enter the column names (comma-separated) or 'Enter' for all columns: ")
+        if columns:
+            columns = [col.strip() for col in columns.split(',')]
+        else:
+            columns = columns_data
         data = self.db_operations.select_data(table, columns)
         for row in data:
             print(row)
@@ -104,10 +125,18 @@ class Interface:
         Update data in a table.
         """
         table = input("Enter the table name: ")
-        columns = input("Enter the column names to update (comma-separated): ").split(',')
-        values = input("Enter the new values (comma-separated): ").split(',')
+        columns_data = self.db_operations.get_table_columns(table)
+        if not columns_data:
+            print(f"Table '{table}' does not exist or has no columns.")
+            return
+        print(f"Columns in table '{table}': {columns_data}")
+        columns_input = input("Enter the column names to update (comma-separated): ")
+        columns = [col.strip() for col in columns_input.split(',')]
+        data = {}
+        for column in columns:
+            value = input(f"Enter new value for column '{column}': ")
+            data[column] = value
         condition = input("Enter the condition for update: ")
-        data = dict(zip(columns, values))
         self.db_operations.update_data(table, data, condition)
 
     def delete_data_from_table(self):

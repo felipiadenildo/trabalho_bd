@@ -33,7 +33,7 @@ class DBOperations:
         List all tables in the database.
         """
         try:
-            query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
+            query = f"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}' ORDER BY ordinal_position;"
             self.db.cursor.execute(query)
             tables = self.db.cursor.fetchall()
             table_names = [table[0] for table in tables]
@@ -43,6 +43,25 @@ class DBOperations:
             print(f"An error occurred while listing tables: {e}")
             return []
 
+    def get_table_columns(self, table):
+        """
+        Get the columns of the specified table in the correct order.
+        """
+        try:
+            query = (f"SELECT column_name "
+                     f"FROM information_schema.columns "
+                     f"WHERE table_name = '{table}' "
+                     f"ORDER BY ordinal_position;")
+            self.db.cursor.execute(query)
+            columns = self.db.cursor.fetchall()
+            column_names = [column[0] for column in columns]
+            return column_names
+        except Exception as e:
+            self.db.connection.rollback()  # Rollback transaction in case of error
+            print(f"An error occurred while retrieving columns for table '{table}': {e}")
+            return []
+
+
     def insert_data(self, table, data):
         """
         Insert data into the specified table.
@@ -51,8 +70,14 @@ class DBOperations:
         placeholders = ', '.join(['%s'] * len(data))
         query = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
         try:
-            self.db.cursor.execute(query, tuple(data.values()))
-            self.db.connection.commit()
+            confirmation = input("Press Enter to confirm insertion or anything else to cancel: ")
+            if confirmation == '':
+                self.db.cursor.execute(query, tuple(data.values()))
+                self.db.connection.commit()
+                print(f"Insert successful on table '{table}'")
+            else:
+                print("Insert cancelled.")
+                return
         except Exception as e:
             print(f"Failed to insert data: {e}")
             self.db.connection.rollback()
@@ -62,6 +87,7 @@ class DBOperations:
         Select data from the specified table.
         """
         try:
+            columns = ', '.join(columns)
             query = f"SELECT {columns} FROM {table}"
             self.db.cursor.execute(query)
             data = self.db.cursor.fetchall()
@@ -77,8 +103,15 @@ class DBOperations:
         set_clause = ', '.join([f"{col} = %s" for col in data.keys()])
         query = f"UPDATE {table} SET {set_clause} WHERE {condition}"
         try:
-            self.db.cursor.execute(query, tuple(data.values()))
-            self.db.connection.commit()
+            confirmation = input("Press Enter to confirm update or anything else to cancel: ")
+
+            if confirmation == '':
+                self.db.cursor.execute(query, tuple(data.values()))
+                self.db.connection.commit()
+                print(f"Update successful on table '{table}'")
+            else:
+                print("Update cancelled.")
+                return
         except Exception as e:
             print(f"Failed to update data: {e}")
             self.db.connection.rollback()
@@ -91,6 +124,7 @@ class DBOperations:
         try:
             self.db.cursor.execute(query)
             self.db.connection.commit()
+            print(f"Delete successful on table '{table}'")
         except Exception as e:
             print(f"Failed to delete data: {e}")
             self.db.connection.rollback()
