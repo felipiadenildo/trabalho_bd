@@ -33,7 +33,7 @@ class DBOperations:
         List all tables in the database.
         """
         try:
-            query = f"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}' ORDER BY ordinal_position;"
+            query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
             self.db.cursor.execute(query)
             tables = self.db.cursor.fetchall()
             table_names = [table[0] for table in tables]

@@ -59,7 +59,9 @@ def main():
             db_operations.execute_script('dml.sql')
 
     else:
-        print(f"\nFound tables:\n\n\t{', \n\t'.join(tables)}")
+        print("\nFound tables:\n")
+        for table in tables:
+            print(f"\t{table}")
 
     interface = Interface(db_operations)
     interface.start()
